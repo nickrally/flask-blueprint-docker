@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  flaskapp:
+    build: ./services/flaskapp
+    volumes:
+      - ./services/flaskapp/:/usr/src/app/
+    ports:
+      - '5002:5002'
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "4432:5432"
+    env_file:
+      - ./.env.dev.db
+volumes:
+  pgdata:
