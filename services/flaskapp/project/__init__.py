@@ -1,6 +1,6 @@
 from flask import Flask
 from .extensions import db
-from .routes import main
+from .routes.main import main
 
 
 def create_app():

@@ -1,6 +1,6 @@
 from flask import Blueprint
-from .extensions import db
-from .models import Thing
+from ..extensions import db
+from ..models.thing import Thing
 
 main = Blueprint('main', __name__)
 
