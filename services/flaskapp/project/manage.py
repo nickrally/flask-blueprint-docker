@@ -1,7 +1,7 @@
 from flask.cli import FlaskGroup
 
 from project import create_app, db
-from project.models import Thing
+from project.models.thing import Thing
 
 app = create_app()
 cli = FlaskGroup(app)
