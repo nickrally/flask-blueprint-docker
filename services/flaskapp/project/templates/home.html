@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="content">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+    <table class="table table-bordered table-dark table-striped table-responsive">
+      <thead class="thead-light">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for thing in things %}
+          <tr>
+           <td>{{thing.name}}</td>
+           <td>{{thing.description}}</td>
+           <td><a href="edit/{{thing.id}}">Update</a></td>
+           <td><a href="delete/{{thing.id}}">Delete</a></td>
+        </tr>
+        {% endfor %} 
+      </tbody>
+    </table>
+    <hr/>
+    <a class="btn btn-primary" href="/add">Add Note</a>
+    </div>
+    </div>
+</div>
+{% endblock %}
