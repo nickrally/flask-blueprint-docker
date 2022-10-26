@@ -1,0 +1,36 @@
+name: blueprint
+on: push # [push, pull_request]
+jobs:
+  BuildWebApp:
+    name: build webapp
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "job triggered by a ${{ github.event_name }} event"
+
+      - run: echo "running on ${{ runner.os }}"
+
+      - run: echo "on branch ${{ github.ref }} in ${{ github.repository }} repo"
+
+      - name: check out code
+        uses: actions/checkout@v2
+
+      - run: echo "${{ github.repository }} repo was cloned to the runner"
+
+      - run: echo "repo was copied to ${{ github.workspace }} on the runner"
+
+      - name: conditional step
+        if: ${{ github.event_name == 'pull_request' }}
+        run: echo "this is a pull request"
+
+      - name: echo "list files in the repo"
+        run: |
+          ls ${{ github.workspace }}
+
+      - name: Python dependencies
+        uses: py-actions/py-dependency-install@v3
+        with:
+          path: "./requirements.txt"
+
+      - name: Test with pytest
+        run: |
+          python -m pytest
